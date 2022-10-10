@@ -3,19 +3,17 @@ const { Comment } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 router.get('/', (req, res) => {
-  try {
-    Comment.findAll({})
+  Comment.findAll({})
     .then(commentInfo => {
         res.json(commentInfo)
         .catch(err => {
             res.status(404).json(err);
         });
       });
-    }
 });
 
 router.get('/id:', (req, res) => {
-    try {
+
       Comment.findAll({
         where: {
           id: req.params.id
@@ -27,7 +25,6 @@ router.get('/id:', (req, res) => {
               res.status(404).json(err);
           });
         });
-      }
   });
  
 router.post('/', async (req, res) => {
@@ -52,7 +49,7 @@ router.delete('/:id', withAuth, async (req, res) => {
             id: req.params.id,
             user_id: req.session.user_id,
         },
-    }),
+    })
 
     if(!commentInfo) {
         res.status(404).json({
