@@ -25,20 +25,36 @@ res.render('homepage', {
 });
 
 
-router.get('/id:', (req, res) => {
-
-      Comment.findAll({
-        where: {
-          id: req.params.id
-        }
-      })
-      .then(commentInfo => {
-          res.json(commentInfo)
-          .catch(err => {
-              res.status(404).json(err);
-          });
+router.get('blog/:id', async (req, res) => {
+    try {
+        const blogInfo = await Blog.findByPk(req.params.id, {
+            include: [
+                {
+                    model: User, 
+                    attributes: ['username'], 
+                }, 
+                {
+                    model: Comment, 
+                    include: [
+                        User
+                    ]
+                }
+            ], 
         });
-  });
+
+        const blog = blogInfo.get({
+            plain: true,
+        });
+
+        res.render('blog', {
+            ...blog, logged_in: req.session.logged_in
+        });
+
+    } catch (err) {
+        res.status(500).json(err);
+    }
+})
+
  
 router.post('/', async (req, res) => {
 
