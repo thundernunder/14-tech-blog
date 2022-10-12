@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const session = require('express-session');
+// const session = require('express-session');
 const { Blog } = require('../../models');
 const withAuth = require('../../utils/auth');
 
