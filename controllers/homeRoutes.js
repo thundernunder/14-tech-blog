@@ -56,14 +56,21 @@ router.get('blog/:id', async (req, res) => {
 })
 
  
-router.post('/', async (req, res) => {
+router.get('/dashboard', withAuth, async (req, res) => {
 
-    try { const newComment = await Comment.create({
-        ...req.body, 
-        user_id: req.session.user_id, 
+    try { const userInfo = await User.findByPk(req.session.user_id, {
+        attributes: {
+            exclude: ['password']
+        }, 
+        include: [{
+            model: Blog
+        }], 
     });
 
-    res.json(newComment);
+    res.render('dashboard', {
+        ...user, 
+        logged_in: true
+    });
 
 } catch (err) {
     res.status(500).json(err);
@@ -71,24 +78,22 @@ router.post('/', async (req, res) => {
 
 });
 
-router.delete('/:id', withAuth, async (req, res) => {
-    
-    try { const commentInfo = await Comment.destroy({
-        where: {
-            id: req.params.id,
-            user_id: req.session.user_id,
-        },
-    })
-
-    if(!commentInfo) {
-        res.status(404).json({
-            message: 'Blog not found'});
-            return;
+router.get('/login', (req, res) => {
+    if(req.session.logged_in) {
+        res.redirect('/dashboard');
+        return;
     }
 
-    res.status(200).json(commentInfo);
-
-} catch(err) {
-    res.status(500).json(err);
-}
+    res.render('login');
 });
+
+router.get('/signup', (req, res) => {
+    if(req.session.logged_in) {
+        res.redirect('/dashboard');
+        return;
+    }
+
+    res.render('signup');
+});
+
+module.exports = router;
