@@ -35,7 +35,6 @@
 <p>Please click this link to navigate to deployed application repo: https://github.com/thundernunder/14-tech-blog</p>
 
 <h2>Live Application</h2>
-https://dashboard.heroku.com/apps/warm-anchorage-17898
 <p>Please click this link to navigate to live application: https://warm-anchorage-17898.herokuapp.com/</p>
 
 <h2>Questions</h2>
