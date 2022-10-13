@@ -25,11 +25,17 @@
 
 <h2>Video Walkthrough</h2>
 
+<p>[tech-blog walkthrough.webm](https://user-images.githubusercontent.com/98553537/195669458-d2aa0066-a559-439b-931b-495cefe82c1d.webm)</p>
+
+<h2>Screenshot</h2>
+
+<p>![app-screenshot](https://user-images.githubusercontent.com/98553537/195669687-240c1553-9b0f-430c-8881-42b8b20e0c57.png)</p>
 
 <h2>Application Repository</h2>
 <p>Please click this link to navigate to deployed application repo: https://github.com/thundernunder/14-tech-blog</p>
 
 <h2>Live Application</h2>
+https://dashboard.heroku.com/apps/warm-anchorage-17898
 <p>Please click this link to navigate to live application: https://warm-anchorage-17898.herokuapp.com/</p>
 
 <h2>Questions</h2>
