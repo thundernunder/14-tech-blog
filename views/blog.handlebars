@@ -5,7 +5,7 @@
 				<h2 class="blogTitle text-uppercase">{{title}}</h2>
 			</div>
 			<div class="col-4">
-				<p class="blogCreate text-right">Author: {{user.username}} on {{format_date date_created}}</p>
+				<p class="blogCreate text-right">Author: {{User.username}} on {{format_date date_created}}</p>
 			</div>
 		</div>
 		<p class="text-center blogDescTwo">{{description}}</p>
@@ -29,9 +29,9 @@
 		{{/if}}
 
 		<h2 class="text-center">Comments</h2>
-		{{#each comments as |comment|}}
+		{{#each Comment as |comment|}}
 		<div class="commentCont">
-			<p class="text-center commentText">{{comment.comment_description}}</p>
+			<p class="text-center commentText">{{comment.description}}</p>
 			<p class="text-center commentOwner"><span>~</span>Commentor: {{comment.user.username}} on {{format_date date_created}}<span>~</span></p>
 		</div>
 		{{/each}}
